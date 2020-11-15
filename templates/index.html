@@ -9,54 +9,52 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- Custom CSS -->
-	<link rel="stylesheet" href="../static/style.css">
+	<link rel="stylesheet" href="../static/styles.css">
 
 </head>
 
 <body>
 	<div class="container">
-        <nav class="navbar navbar-light bg-light">
-        <div class="logo">zendesk</div>
-        
-        </nav>
+		<nav class="navbar navbar-light bg-light">
+			<div class="logo">zendesk</div>
+
+		</nav>
 
 		<h1>Ticket Viewer</h1>
 
 		<div class="row">
-			<div class="ticket-viewer col-md col-lg-8 offset-lg-2">
+        {% for ticket in tickets %}
+			<div class="ticket-viewer col-md col-lg-10 offset-lg-1">
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col">#</th>
-							<th scope="col">First</th>
-							<th scope="col">Last</th>
-							<th scope="col">Handle</th>
+							<th scope="col">#ID</th>
+							<th scope="col">Subject</th>
+							<th scope="col">Due</th>
+							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<th scope="row">1</th>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
+							<th scope="row">{{ticket.id}}</th>
+							<td>{{ticket.subject}}</td>
+							<td>{{ticket.due_at}}</td>
+							<td><a href="{{url_for('ticket_view', ticket_id=ticket.id)}}">LINK</a></td>
 						</tr>
 						<tr>
-							<th scope="row">2</th>
-							<td>Jacob</td>
-							<td>Thornton</td>
-							<td>@fat</td>
-						</tr>
-						<tr>
-							<th scope="row">3</th>
-							<td>Larry</td>
-							<td>the Bird</td>
-							<td>@twitter</td>
-						</tr>
+						
 					</tbody>
 				</table>
 			</div>
+            {% endfor %}
+		</div>
+		<div class="button-container">
+			<button id="get-btn">Get ticket!</button>
 		</div>
 
+		<div id="error-msg"></div>
+
+		<div id="details"></div>
 
 	</div>
 
@@ -72,7 +70,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 	</script>
-	<script src="../static/main.js"></script>
+	<!-- <script src="../static/main.js"></script> -->
+    <script src="../static/main.js"></script>
 </body>
 
 </html>
